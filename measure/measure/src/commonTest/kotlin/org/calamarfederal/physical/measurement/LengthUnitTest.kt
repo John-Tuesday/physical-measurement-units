@@ -1,10 +1,7 @@
 package org.calamarfederal.physical.measurement
 
+import org.calamarfederal.physical.measurement.test.assertEquals
 import kotlin.test.Test
-import kotlin.test.assertEquals
-
-fun Length.Companion.assertEquals(expected: Length, actual: Length, absoluteTolerance: Double = 0.000_000_001, message: String? = null) =
-    assertEquals(expected.meter, actual.meter, absoluteTolerance = absoluteTolerance, message = message)
 
 class LengthUnitTest {
     @Test
