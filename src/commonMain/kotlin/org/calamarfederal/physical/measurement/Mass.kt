@@ -2,6 +2,11 @@ package org.calamarfederal.physical.measurement
 
 import kotlin.math.absoluteValue
 
+/**
+ * Measure of Mass
+ *
+ * (sometimes confused Weight)
+ */
 class Mass internal constructor(
     internal val grams: Double,
 ) : Comparable<Mass> {
@@ -10,8 +15,11 @@ class Mass internal constructor(
     companion object
 }
 
+/**
+ * Supported units of measure of [Mass]
+ */
 enum class MassUnit(internal val toGramsScale: Double) {
-    Micrograms(0.000_001),
+    Microgram(0.000_001),
     Milligram(0.001),
     Gram(1.0),
     Kilogram(1_000.0),
@@ -22,9 +30,17 @@ enum class MassUnit(internal val toGramsScale: Double) {
 
 fun Mass.inUnitsOf(massUnit: MassUnit): Double = grams / massUnit.toGramsScale
 
+/**
+ * Alternate constructor patter for [Mass]
+ *
+ * creates a [Mass] with [amount] number of [massUnit]
+ */
 operator fun Mass.Companion.invoke(amount: Number, massUnit: MassUnit): Mass =
     Mass(grams = amount.toDouble() * massUnit.toGramsScale)
 
+/**
+ * Negate the underlying value
+ */
 operator fun Mass.unaryMinus(): Mass = Mass(grams = -grams)
 val Mass.absoluteValue: Mass get() = Mass(grams = grams.absoluteValue)
 operator fun Mass.plus(other: Mass): Mass = Mass(grams = grams + other.grams)
@@ -35,7 +51,7 @@ operator fun Mass.minus(other: Mass): Mass = Mass(grams = grams - other.grams)
  */
 operator fun Mass.div(other: Mass): Double = grams / other.grams
 
-val Number.micrograms: Mass get() = Mass(toDouble(), MassUnit.Micrograms)
+val Number.micrograms: Mass get() = Mass(toDouble(), MassUnit.Microgram)
 val Number.milligrams: Mass get() = Mass(toDouble(), MassUnit.Milligram)
 val Number.grams: Mass get() = Mass(toDouble(), MassUnit.Gram)
 val Number.kilograms: Mass get() = Mass(toDouble(), MassUnit.Kilogram)

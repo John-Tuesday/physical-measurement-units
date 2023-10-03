@@ -2,6 +2,9 @@ package org.calamarfederal.physical.measurement
 
 import kotlin.math.absoluteValue
 
+/**
+ * Measure of Volume
+ */
 class Volume internal constructor(
     internal val liters: Double,
 ): Comparable<Volume> {
@@ -10,6 +13,9 @@ class Volume internal constructor(
     companion object
 }
 
+/**
+ * Supported units of measure for [Volume]
+ */
 enum class VolumeUnit(internal val toLiterScale: Double) {
     Milliliter(1_000.0),
     Liter(1.0),
@@ -23,9 +29,17 @@ enum class VolumeUnit(internal val toLiterScale: Double) {
 
 fun Volume.inUnitsOf(volumeUnit: VolumeUnit): Double = liters / volumeUnit.toLiterScale
 
+/**
+ * Alternate constructor patter for [Volume]
+ *
+ * creates a [Volume] with [amount] number of [volumeUnit]
+ */
 operator fun Volume.Companion.invoke(amount: Number, volumeUnit: VolumeUnit): Volume =
     Volume(liters = amount.toDouble() * volumeUnit.toLiterScale)
 
+/**
+ * Negate the underlying value
+ */
 operator fun Volume.unaryMinus(): Volume = Volume(-liters)
 val Volume.absoluteValue: Volume get() = Volume(liters.absoluteValue)
 operator fun Volume.plus(other: Volume): Volume = Volume(liters + other.liters)

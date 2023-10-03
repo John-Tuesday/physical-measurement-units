@@ -2,6 +2,9 @@ package org.calamarfederal.physical.measurement
 
 import kotlin.math.absoluteValue
 
+/**
+ * Measure of Length
+ */
 class Length internal constructor(
     internal val meter: Double,
 ): Comparable<Length> {
@@ -10,6 +13,9 @@ class Length internal constructor(
     companion object
 }
 
+/**
+ * Supported measurement units of [Length]
+ */
 enum class LengthUnit(internal val toMeterScale: Double) {
     Millimeter(0.001),
     Centimeter(0.01),
@@ -23,10 +29,19 @@ enum class LengthUnit(internal val toMeterScale: Double) {
 
 fun Length.inUnitsOf(lengthUnit: LengthUnit): Double = meter / lengthUnit.toMeterScale
 
+/**
+ * Alternate constructor patter for [Length]
+ *
+ * creates a [Length] with [amount] number of [lengthUnit]
+ */
 operator fun Length.Companion.invoke(amount: Number, lengthUnit: LengthUnit): Length =
     Length(meter = amount.toDouble() * lengthUnit.toMeterScale)
 
+/**
+ * Negate the underlying value
+ */
 operator fun Length.unaryMinus(): Length = Length(meter = -meter)
+
 val Length.absoluteValue: Length get() = Length(meter = meter.absoluteValue)
 operator fun Length.plus(other: Length): Length = Length(meter = meter + other.meter)
 operator fun Length.minus(other: Length): Length = Length(meter = meter - other.meter)
