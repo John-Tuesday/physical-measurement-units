@@ -1,12 +1,15 @@
 pluginManagement {
+    includeBuild("build-logic")
     repositories {
         mavenCentral()
-        gradlePluginPortal()
+    }
+}
+dependencyResolutionManagement {
+    repositories {
+        mavenCentral()
     }
 }
 
-plugins {
-    id("org.gradle.toolchains.foojay-resolver-convention") version "0.7.0"
-}
-
 rootProject.name = "physical-measurement-units"
+include(":measure:test")
+include(":measure:measure")
