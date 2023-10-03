@@ -12,6 +12,14 @@ class Mass internal constructor(
 ) : Comparable<Mass> {
     override fun compareTo(other: Mass): Int = grams.compareTo(other.grams)
 
+    override fun toString(): String = "${this::class.simpleName!!}(grams = $grams)"
+
+    /**
+     * Compare equality based on underlying mass value
+     */
+    override fun equals(other: Any?): Boolean = other is Mass && other.grams == grams
+    override fun hashCode(): Int = grams.hashCode()
+
     companion object
 }
 
@@ -52,8 +60,16 @@ operator fun Mass.minus(other: Mass): Mass = Mass(grams = grams - other.grams)
 operator fun Mass.div(other: Mass): Double = grams / other.grams
 
 val Number.micrograms: Mass get() = Mass(toDouble(), MassUnit.Microgram)
+fun Mass.inMicrograms(): Double = inUnitsOf(MassUnit.Microgram)
 val Number.milligrams: Mass get() = Mass(toDouble(), MassUnit.Milligram)
+fun Mass.inMilligrams(): Double = inUnitsOf(MassUnit.Milligram)
 val Number.grams: Mass get() = Mass(toDouble(), MassUnit.Gram)
+fun Mass.inGrams(): Double = inUnitsOf(MassUnit.Gram)
 val Number.kilograms: Mass get() = Mass(toDouble(), MassUnit.Kilogram)
-val Number.oz: Mass get() = Mass(toDouble(), MassUnit.Ounce)
-val Number.lbs: Mass get() = Mass(toDouble(), MassUnit.Pound)
+fun Mass.inKilograms(): Double = inUnitsOf(MassUnit.Kilogram)
+val Number.ounces: Mass get() = Mass(toDouble(), MassUnit.Ounce)
+val Number.oz: Mass get() = ounces
+fun Mass.inOunces(): Double = inUnitsOf(MassUnit.Ounce)
+val Number.pounds: Mass get() = Mass(toDouble(), MassUnit.Pound)
+val Number.lbs: Mass get() = pounds
+fun Mass.inPounds(): Double = inUnitsOf(MassUnit.Pound)

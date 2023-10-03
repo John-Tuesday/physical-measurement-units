@@ -10,6 +10,14 @@ class Volume internal constructor(
 ): Comparable<Volume> {
     override fun compareTo(other: Volume): Int = liters.compareTo(other.inUnitsOf(VolumeUnit.Liter))
 
+    override fun toString(): String = "${this::class.simpleName!!}(liters = $liters)"
+
+    /**
+     * Compares equality based on the underlying volume value
+     */
+    override fun equals(other: Any?): Boolean = other is Volume && other.liters == liters
+    override fun hashCode(): Int = liters.hashCode()
+
     companion object
 }
 
@@ -17,9 +25,9 @@ class Volume internal constructor(
  * Supported units of measure for [Volume]
  */
 enum class VolumeUnit(internal val toLiterScale: Double) {
-    Milliliter(1_000.0),
+    Milliliter(0.001),
     Liter(1.0),
-    Kiloliter(0.000_1),
+    Kiloliter(1_000.0),
     UsGallon(3.785_411_784),
     UsFluidOunce(0.029_573_529_562_5),
     UsTablespoon(UsFluidOunce.toLiterScale / 2.0),
@@ -50,10 +58,18 @@ operator fun Volume.minus(other: Volume): Volume = Volume(liters + other.liters)
  */
 operator fun Volume.div(other: Volume): Double = liters / other.liters
 
-val Number.kiloliter: Volume get() = Volume(toDouble(), VolumeUnit.Kiloliter)
+val Number.kiloliters: Volume get() = Volume(toDouble(), VolumeUnit.Kiloliter)
+fun Volume.inKiloliters(): Double = inUnitsOf(VolumeUnit.Kiloliter)
 val Number.liters: Volume get() = Volume(toDouble(), VolumeUnit.Liter)
+fun Volume.inLiters(): Double = inUnitsOf(VolumeUnit.Liter)
 val Number.milliliters: Volume get() = Volume(toDouble(), VolumeUnit.Milliliter)
+fun Volume.inMilliliters(): Double = inUnitsOf(VolumeUnit.Milliliter)
 val Number.usGallons: Volume get() = Volume(toDouble(), VolumeUnit.UsGallon)
-val Number.usFlOz: Volume get() = Volume(toDouble(), VolumeUnit.UsFluidOunce)
+fun Volume.inUsGallons(): Double = inUnitsOf(VolumeUnit.UsGallon)
+val Number.usFluidOunces: Volume get() = Volume(toDouble(), VolumeUnit.UsFluidOunce)
+val Number.usFlOz: Volume get() = usFluidOunces
+fun Volume.inUsFluidOunce(): Double = inUnitsOf(VolumeUnit.UsFluidOunce)
 val Number.usTablespoons: Volume get() = Volume(toDouble(), VolumeUnit.UsTablespoon)
+fun Volume.inUsTablespoons(): Double = inUnitsOf(VolumeUnit.UsTablespoon)
 val Number.usTeaspoons: Volume get() = Volume(toDouble(), VolumeUnit.UsTeaspoon)
+fun Volume.inUsTeaspoons(): Double = inUnitsOf(VolumeUnit.UsTeaspoon)
