@@ -33,5 +33,10 @@ gradlePlugin {
             id = "measure.kotlin.library.native"
             implementationClass = "KotlinLibraryNativeConvention"
         }
+
+        register("mavenPublication") {
+            id = "measure.maven.publication"
+            implementationClass = "MavenPublicationConvention"
+        }
     }
 }

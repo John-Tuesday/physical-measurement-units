@@ -5,7 +5,7 @@ plugins {
     id("measure.kotlin.library")
     id("measure.kotlin.library.jvm")
     id("measure.kotlin.library.native")
-    `maven-publish`
+    id("measure.maven.publication")
 }
 
 group = MavenGroupId
