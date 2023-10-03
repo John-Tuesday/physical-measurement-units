@@ -1,5 +1,5 @@
 plugins {
-    kotlin("multiplatform") version "1.9.0"
+    kotlin("multiplatform") version libs.versions.kotlin
 }
 
 group = "org.calamarfederal"
