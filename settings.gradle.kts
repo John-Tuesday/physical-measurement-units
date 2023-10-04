@@ -11,5 +11,5 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "physical-measurement-units"
-include(":measure:test")
+include(":measure:measure-test")
 include(":measure:measure")

@@ -12,7 +12,7 @@ group = MavenGroupId
 version = MavenVersion
 
 dependencies {
-    commonTestImplementation(project(":measure:test"))
+    commonTestImplementation(project(":measure:measure-test"))
     commonTestImplementation(libs.kotlin.test)
     jvmTestImplementation(libs.junit.jupiter)
     jvmTestRuntimeOnly(libs.junit.platform.launcher)
