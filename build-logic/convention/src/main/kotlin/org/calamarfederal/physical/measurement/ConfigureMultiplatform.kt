@@ -3,9 +3,6 @@ package org.calamarfederal.physical.measurement
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
-const val MavenGroupId = "io.github.john-tuesday"
-const val MavenVersion = "1.0.0"
-
 /**
  * Configure Kotlin Multiplatform common to all targets
  */
