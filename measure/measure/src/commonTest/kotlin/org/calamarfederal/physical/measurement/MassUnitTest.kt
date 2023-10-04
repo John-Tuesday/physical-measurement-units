@@ -1,5 +1,6 @@
 package org.calamarfederal.physical.measurement
 
+import org.calamarfederal.physical.measurement.test.assertEquals
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -33,5 +34,16 @@ class MassUnitTest {
     fun usToMetricTest() {
         assertEquals(1.pounds, 453.592_37.grams)
         assertEquals(1.ounces, 28.349_523_125.grams)
+    }
+
+    @Test
+    fun scaleOperatorsTest() {
+        with(Mass) {
+            assertEquals(1.grams, 2.grams / 2)
+            assertEquals(2.grams, 1.grams * 2)
+        }
+        assertEquals(1.00, 1.grams / 1.grams)
+        assertEquals(2.00, 2.grams / 1.grams)
+        assertEquals(0.50, 1.grams / 2.grams)
     }
 }

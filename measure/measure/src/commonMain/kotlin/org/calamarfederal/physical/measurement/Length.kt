@@ -58,6 +58,16 @@ operator fun Length.minus(other: Length): Length = Length(meter = meter - other.
  */
 operator fun Length.div(other: Length): Double = meter / other.meter
 
+/**
+ * Scale `this` by [number]
+ */
+operator fun Length.times(number: Number): Length = Length(meter * number.toDouble())
+
+/**
+ * Shrink `this` by [number]
+ */
+operator fun Length.div(number: Number): Length = Length(meter / number.toDouble())
+
 
 val Number.kilometers: Length get() = Length(toDouble(), LengthUnit.Kilometer)
 fun Length.inKilometers(): Double = inUnitsOf(LengthUnit.Kilometer)

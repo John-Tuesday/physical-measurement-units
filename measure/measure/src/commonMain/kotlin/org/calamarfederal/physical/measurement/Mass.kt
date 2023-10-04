@@ -59,6 +59,16 @@ operator fun Mass.minus(other: Mass): Mass = Mass(grams = grams - other.grams)
  */
 operator fun Mass.div(other: Mass): Double = grams / other.grams
 
+/**
+ * Scale `this` by [number]
+ */
+operator fun Mass.times(number: Number): Mass = Mass(grams * number.toDouble())
+
+/**
+ * Shrink `this` by [number]
+ */
+operator fun Mass.div(number: Number): Mass = Mass(grams / number.toDouble())
+
 val Number.micrograms: Mass get() = Mass(toDouble(), MassUnit.Microgram)
 fun Mass.inMicrograms(): Double = inUnitsOf(MassUnit.Microgram)
 val Number.milligrams: Mass get() = Mass(toDouble(), MassUnit.Milligram)

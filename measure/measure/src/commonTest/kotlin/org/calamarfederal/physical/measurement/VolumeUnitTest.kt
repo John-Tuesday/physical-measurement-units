@@ -1,5 +1,6 @@
 package org.calamarfederal.physical.measurement
 
+import org.calamarfederal.physical.measurement.test.assertEquals
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -42,13 +43,13 @@ class VolumeUnitTest {
     }
 
     @Test
-    fun inUnitsOfTest() {
-//        val amount = 1
-//        for (unit in VolumeUnit.entries) {
-//            val actual = amount.inUnitsOf(unit)
-//            when (unit) {
-//                VolumeUnit.Liter -> 1
-//            }
-//        }
+    fun scaleOperatorsTest() {
+        with(Volume) {
+            assertEquals(1.liters, 2.liters / 2)
+            assertEquals(2.liters, 1.liters * 2)
+        }
+        assertEquals(1.00, 1.liters / 1.liters)
+        assertEquals(2.00, 2.liters / 1.liters)
+        assertEquals(0.50, 1.liters / 2.liters)
     }
 }

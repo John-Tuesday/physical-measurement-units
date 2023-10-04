@@ -2,6 +2,7 @@ package org.calamarfederal.physical.measurement
 
 import org.calamarfederal.physical.measurement.test.assertEquals
 import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class LengthUnitTest {
     @Test
@@ -41,5 +42,16 @@ class LengthUnitTest {
             assertEquals(1.feet, 0.304_8.meters)
             assertEquals(1.miles, 1_609.344.meters)
         }
+    }
+
+    @Test
+    fun scaleOperatorsTest() {
+        with(Length) {
+            assertEquals(1.meters, 2.meters / 2)
+            assertEquals(2.meters, 1.meters * 2)
+        }
+        assertEquals( 1.00, 1.meters / 1.meters)
+        assertEquals(2.00, 2.meters / 1.meters)
+        assertEquals(0.50, 1.meters / 2.meters)
     }
 }

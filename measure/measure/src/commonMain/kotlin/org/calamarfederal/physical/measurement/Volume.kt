@@ -58,6 +58,16 @@ operator fun Volume.minus(other: Volume): Volume = Volume(liters + other.liters)
  */
 operator fun Volume.div(other: Volume): Double = liters / other.liters
 
+/**
+ * Scale `this` by [number]
+ */
+operator fun Volume.times(number: Number): Volume = Volume(liters * number.toDouble())
+
+/**
+ * Shrink `this` by [number]
+ */
+operator fun Volume.div(number: Number): Volume = Volume(liters / number.toDouble())
+
 val Number.kiloliters: Volume get() = Volume(toDouble(), VolumeUnit.Kiloliter)
 fun Volume.inKiloliters(): Double = inUnitsOf(VolumeUnit.Kiloliter)
 val Number.liters: Volume get() = Volume(toDouble(), VolumeUnit.Liter)
