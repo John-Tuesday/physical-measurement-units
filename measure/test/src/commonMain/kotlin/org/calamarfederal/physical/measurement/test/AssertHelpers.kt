@@ -46,3 +46,17 @@ fun Volume.Companion.assertEquals(
     absoluteTolerance: Volume,
     message: String? = null
 ) = assertTrue((expected - actual).absoluteValue <= absoluteTolerance.absoluteValue, message = message)
+
+fun Energy.Companion.assertEquals(
+    expected: Energy,
+    actual: Energy,
+    absoluteTolerance: Double = DefaultTolerance,
+    message: String? = null
+) = assertEquals(expected.inJoules(), actual.inJoules(), absoluteTolerance = absoluteTolerance, message = message)
+
+fun Energy.Companion.assertEquals(
+    expected: Energy,
+    actual: Energy,
+    absoluteTolerance: Energy,
+    message: String? = null
+) = assertTrue((expected - actual).absoluteValue <= absoluteTolerance.absoluteValue, message = message)
