@@ -48,10 +48,10 @@ operator fun Volume.Companion.invoke(amount: Number, volumeUnit: VolumeUnit): Vo
 /**
  * Negate the underlying value
  */
-operator fun Volume.unaryMinus(): Volume = Volume(-liters)
-val Volume.absoluteValue: Volume get() = Volume(liters.absoluteValue)
-operator fun Volume.plus(other: Volume): Volume = Volume(liters + other.liters)
-operator fun Volume.minus(other: Volume): Volume = Volume(liters + other.liters)
+operator fun Volume.unaryMinus(): Volume = Volume(liters = -liters)
+val Volume.absoluteValue: Volume get() = Volume(liters = liters.absoluteValue)
+operator fun Volume.plus(other: Volume): Volume = Volume(liters = liters + other.liters)
+operator fun Volume.minus(other: Volume): Volume = Volume(liters = liters - other.liters)
 
 /**
  * Ratio of `this` to [other]

@@ -45,6 +45,18 @@ class LengthUnitTest {
     }
 
     @Test
+    fun plusMinusTest() {
+        val amount = 1.meters
+        val zero = 0.meters
+        with(Length) {
+            assertEquals(zero, amount - amount)
+            assertEquals(amount, amount + amount - amount)
+            assertEquals(amount, -(-amount))
+            assertEquals(zero, amount + (-amount))
+        }
+    }
+
+    @Test
     fun scaleOperatorsTest() {
         with(Length) {
             assertEquals(1.meters, 2.meters / 2)

@@ -37,6 +37,18 @@ class MassUnitTest {
     }
 
     @Test
+    fun plusMinusTest() {
+        val amount = 1.grams
+        val zero = 0.grams
+        with(Mass) {
+            assertEquals(zero, amount - amount)
+            assertEquals(amount, amount + amount - amount)
+            assertEquals(amount, -(-amount))
+            assertEquals(zero, amount + (-amount))
+        }
+    }
+
+    @Test
     fun scaleOperatorsTest() {
         with(Mass) {
             assertEquals(1.grams, 2.grams / 2)

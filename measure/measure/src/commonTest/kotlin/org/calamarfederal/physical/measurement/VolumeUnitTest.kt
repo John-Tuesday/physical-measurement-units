@@ -43,6 +43,18 @@ class VolumeUnitTest {
     }
 
     @Test
+    fun plusMinusTest() {
+        val amount = 1.liters
+        val zero = 0.liters
+        with(Volume) {
+            assertEquals(zero, amount - amount)
+            assertEquals(amount, amount + amount - amount)
+            assertEquals(amount, -(-amount))
+            assertEquals(zero, amount + (-amount))
+        }
+    }
+
+    @Test
     fun scaleOperatorsTest() {
         with(Volume) {
             assertEquals(1.liters, 2.liters / 2)

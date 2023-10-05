@@ -40,6 +40,18 @@ class EnergyUnitTest {
     }
 
     @Test
+    fun plusMinusTest() {
+        val amount = 1.joules
+        val zero = 0.joules
+        with(Length) {
+            assertEquals(zero, amount - amount)
+            assertEquals(amount, amount + amount - amount)
+            assertEquals(amount, -(-amount))
+            assertEquals(zero, amount + (-amount))
+        }
+    }
+
+    @Test
     fun scaleOperatorsTest() {
         with(Energy) {
             assertEquals(1.joules, 2.joules / 2)
