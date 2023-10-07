@@ -12,7 +12,7 @@ import java.util.*
 
 
 const val MavenGroupId = "io.github.john-tuesday"
-const val MavenVersion = "1.1.1"
+const val MavenVersion = "1.2.1"
 internal const val GitUrl = "https://github.com/John-Tuesday/physical-measurement-units"
 
 internal fun Project.configureSecrets() {
