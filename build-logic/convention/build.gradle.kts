@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
+
 plugins {
     `kotlin-dsl`
 }
@@ -5,12 +7,10 @@ plugins {
 group = "org.calamarfederal.measurement.build-logic"
 
 kotlin {
-    sourceSets.all {
-        languageSettings.apply {
-            languageVersion = "1.9"
-            apiVersion = "1.9"
-            progressiveMode = true
-        }
+    compilerOptions {
+        apiVersion = KotlinVersion.KOTLIN_1_9
+        languageVersion = KotlinVersion.KOTLIN_1_9
+        progressiveMode = true
     }
 }
 

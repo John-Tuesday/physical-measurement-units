@@ -6,6 +6,7 @@ import org.gradle.api.publish.maven.MavenPomDeveloperSpec
 import org.gradle.api.publish.maven.MavenPomLicenseSpec
 import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.api.tasks.bundling.Jar
+import org.gradle.kotlin.dsl.assign
 import org.gradle.kotlin.dsl.extra
 import org.gradle.kotlin.dsl.withType
 import java.util.*
@@ -58,9 +59,9 @@ internal fun PublishingExtension.configureMaven(
         artifact(getJar())
 
         pom {
-            name.set("Physical Measurement Units")
-            description.set("Simple Kotlin Multiplatform library which supplies Mass, Volume, and Length")
-            url.set(GitUrl)
+            name = "Physical Measurement Units"
+            description = "Simple Kotlin Multiplatform library which supplies Mass, Volume, and Length"
+            url = GitUrl
 
             licenses {
                 mit()
@@ -69,7 +70,7 @@ internal fun PublishingExtension.configureMaven(
                 johnTuesday()
             }
             scm {
-                url.set(GitUrl)
+                url = GitUrl
             }
         }
     }
@@ -77,16 +78,16 @@ internal fun PublishingExtension.configureMaven(
 
 internal fun MavenPomLicenseSpec.mit() {
     license {
-        name.set("MIT")
-        url.set("https://opensource.org/licenses/MIT")
+        name = "MIT"
+        url = "https://opensource.org/licenses/MIT"
     }
 }
 
 internal fun MavenPomDeveloperSpec.johnTuesday() {
     developer {
-        id.set("John-Tuesday")
-        name.set("John Tuesday Picot")
-        email.set("calamarfederal.messyink@gmail.com")
+        id = "John-Tuesday"
+        name = "John Tuesday Picot"
+        email = "calamarfederal.messyink@gmail.com"
     }
 }
 
