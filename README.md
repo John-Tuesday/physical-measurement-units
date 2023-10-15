@@ -1,4 +1,7 @@
 # physical-measurement-units
+![Release](https://img.shields.io/badge/release-v1.1.1-blue)
+![multiplatform](https://img.shields.io/badge/kotlin-multiplatform-7F52FF?logo=Kotlin)
+
 
 Simple Kotlin Multiplatform library which supports different types of units of measure and
 
