@@ -21,6 +21,9 @@ public class Energy internal constructor(
     public companion object
 }
 
+/**
+ * Unit of measurement for [Energy]
+ */
 public enum class EnergyUnit(internal val toJouleScale: Double) {
     Joule(1.0),
     Kilojoule(1_000.0),
@@ -33,11 +36,9 @@ public enum class EnergyUnit(internal val toJouleScale: Double) {
 public fun Energy.inUnitsOf(energyUnit: EnergyUnit): Double = joules / energyUnit.toJouleScale
 
 /**
- * Alternate constructor pattern for [Energy]
- *
- * creates a [Energy] with [amount] number of [energyUnit]
+ * Creates an [Energy] with [amount] number of [energyUnit]
  */
-public operator fun Energy.Companion.invoke(amount: Number, energyUnit: EnergyUnit): Energy =
+public fun Energy(amount: Number, energyUnit: EnergyUnit): Energy =
     Energy(joules = amount.toDouble() * energyUnit.toJouleScale)
 
 /**

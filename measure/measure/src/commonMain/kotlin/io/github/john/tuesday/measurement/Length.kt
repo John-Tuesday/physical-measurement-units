@@ -37,11 +37,9 @@ public enum class LengthUnit(internal val toMeterScale: Double) {
 public fun Length.inUnitsOf(lengthUnit: LengthUnit): Double = meter / lengthUnit.toMeterScale
 
 /**
- * Alternate constructor patter for [Length]
- *
- * creates a [Length] with [amount] number of [lengthUnit]
+ * Creates a [Length] with [amount] number of [lengthUnit]
  */
-public operator fun Length.Companion.invoke(amount: Number, lengthUnit: LengthUnit): Length =
+public fun Length(amount: Number, lengthUnit: LengthUnit): Length =
     Length(meter = amount.toDouble() * lengthUnit.toMeterScale)
 
 /**

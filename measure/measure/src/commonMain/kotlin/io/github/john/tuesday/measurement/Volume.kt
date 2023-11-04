@@ -38,11 +38,9 @@ public enum class VolumeUnit(internal val toLiterScale: Double) {
 public fun Volume.inUnitsOf(volumeUnit: VolumeUnit): Double = liters / volumeUnit.toLiterScale
 
 /**
- * Alternate constructor patter for [Volume]
- *
- * creates a [Volume] with [amount] number of [volumeUnit]
+ * Creates a [Volume] with [amount] number of [volumeUnit]
  */
-public operator fun Volume.Companion.invoke(amount: Number, volumeUnit: VolumeUnit): Volume =
+public fun Volume(amount: Number, volumeUnit: VolumeUnit): Volume =
     Volume(liters = amount.toDouble() * volumeUnit.toLiterScale)
 
 /**

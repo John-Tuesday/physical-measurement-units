@@ -43,7 +43,7 @@ public fun Mass.inUnitsOf(massUnit: MassUnit): Double = grams / massUnit.toGrams
  *
  * creates a [Mass] with [amount] number of [massUnit]
  */
-public operator fun Mass.Companion.invoke(amount: Number, massUnit: MassUnit): Mass =
+public fun Mass(amount: Number, massUnit: MassUnit): Mass =
     Mass(grams = amount.toDouble() * massUnit.toGramsScale)
 
 /**
