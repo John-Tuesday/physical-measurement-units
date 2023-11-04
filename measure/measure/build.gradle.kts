@@ -11,9 +11,20 @@ plugins {
 group = MavenGroupId
 version = MavenVersion
 
-dependencies {
-    commonTestImplementation(project(":measure:measure-test"))
-    commonTestImplementation(libs.kotlin.test)
-    jvmTestImplementation(libs.junit.jupiter)
-    jvmTestRuntimeOnly(libs.junit.platform.launcher)
+kotlin {
+    sourceSets {
+        val commonTest by getting {
+            dependencies {
+                implementation(project(":measure:measure-test"))
+                implementation(libs.kotlin.test)
+            }
+        }
+
+        val jvmTest by getting {
+            dependencies {
+                implementation(libs.junit.jupiter)
+                runtimeOnly(libs.junit.platform.launcher)
+            }
+        }
+    }
 }

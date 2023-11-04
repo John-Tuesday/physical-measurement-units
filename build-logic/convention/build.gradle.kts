@@ -12,11 +12,15 @@ kotlin {
         languageVersion = KotlinVersion.KOTLIN_1_9
         progressiveMode = true
     }
-}
 
-dependencies {
-    compileOnly(libs.kotlin.gradlePlugin)
-    compileOnly(libs.kotlin.multiplatform.gradlePlugin)
+    sourceSets {
+        val main by getting {
+            dependencies {
+                compileOnly(libs.kotlin.gradlePlugin)
+                compileOnly(libs.kotlin.multiplatform.gradlePlugin)
+            }
+        }
+    }
 }
 
 gradlePlugin {

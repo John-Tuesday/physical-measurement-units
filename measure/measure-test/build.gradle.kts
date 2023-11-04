@@ -11,7 +11,14 @@ plugins {
 group = MavenGroupId
 version = MavenVersion
 
-dependencies {
-    commonMainApi(project(":measure:measure"))
-    commonMainImplementation(libs.kotlin.test)
+kotlin {
+    sourceSets {
+        val commonMain by getting {
+            dependencies {
+                api(project(":measure:measure"))
+                implementation(libs.kotlin.test)
+            }
+        }
+    }
 }
+
