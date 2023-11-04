@@ -5,7 +5,7 @@ import kotlin.math.absoluteValue
 /**
  * Measure of Volume
  */
-class Volume internal constructor(
+public class Volume internal constructor(
     internal val liters: Double,
 ): Comparable<Volume> {
     override fun compareTo(other: Volume): Int = liters.compareTo(other.inUnitsOf(VolumeUnit.Liter))
@@ -18,13 +18,13 @@ class Volume internal constructor(
     override fun equals(other: Any?): Boolean = other is Volume && other.liters == liters
     override fun hashCode(): Int = liters.hashCode()
 
-    companion object
+    public companion object
 }
 
 /**
  * Supported units of measure for [Volume]
  */
-enum class VolumeUnit(internal val toLiterScale: Double) {
+public enum class VolumeUnit(internal val toLiterScale: Double) {
     Milliliter(0.001),
     Liter(1.0),
     Kiloliter(1_000.0),
@@ -35,51 +35,51 @@ enum class VolumeUnit(internal val toLiterScale: Double) {
     ;
 }
 
-fun Volume.inUnitsOf(volumeUnit: VolumeUnit): Double = liters / volumeUnit.toLiterScale
+public fun Volume.inUnitsOf(volumeUnit: VolumeUnit): Double = liters / volumeUnit.toLiterScale
 
 /**
  * Alternate constructor patter for [Volume]
  *
  * creates a [Volume] with [amount] number of [volumeUnit]
  */
-operator fun Volume.Companion.invoke(amount: Number, volumeUnit: VolumeUnit): Volume =
+public operator fun Volume.Companion.invoke(amount: Number, volumeUnit: VolumeUnit): Volume =
     Volume(liters = amount.toDouble() * volumeUnit.toLiterScale)
 
 /**
  * Negate the underlying value
  */
-operator fun Volume.unaryMinus(): Volume = Volume(liters = -liters)
-val Volume.absoluteValue: Volume get() = Volume(liters = liters.absoluteValue)
-operator fun Volume.plus(other: Volume): Volume = Volume(liters = liters + other.liters)
-operator fun Volume.minus(other: Volume): Volume = Volume(liters = liters - other.liters)
+public operator fun Volume.unaryMinus(): Volume = Volume(liters = -liters)
+public val Volume.absoluteValue: Volume get() = Volume(liters = liters.absoluteValue)
+public operator fun Volume.plus(other: Volume): Volume = Volume(liters = liters + other.liters)
+public operator fun Volume.minus(other: Volume): Volume = Volume(liters = liters - other.liters)
 
 /**
  * Ratio of `this` to [other]
  */
-operator fun Volume.div(other: Volume): Double = liters / other.liters
+public operator fun Volume.div(other: Volume): Double = liters / other.liters
 
 /**
  * Scale `this` by [number]
  */
-operator fun Volume.times(number: Number): Volume = Volume(liters * number.toDouble())
+public operator fun Volume.times(number: Number): Volume = Volume(liters * number.toDouble())
 
 /**
  * Shrink `this` by [number]
  */
-operator fun Volume.div(number: Number): Volume = Volume(liters / number.toDouble())
+public operator fun Volume.div(number: Number): Volume = Volume(liters / number.toDouble())
 
-val Number.kiloliters: Volume get() = Volume(toDouble(), VolumeUnit.Kiloliter)
-fun Volume.inKiloliters(): Double = inUnitsOf(VolumeUnit.Kiloliter)
-val Number.liters: Volume get() = Volume(toDouble(), VolumeUnit.Liter)
-fun Volume.inLiters(): Double = inUnitsOf(VolumeUnit.Liter)
-val Number.milliliters: Volume get() = Volume(toDouble(), VolumeUnit.Milliliter)
-fun Volume.inMilliliters(): Double = inUnitsOf(VolumeUnit.Milliliter)
-val Number.usGallons: Volume get() = Volume(toDouble(), VolumeUnit.UsGallon)
-fun Volume.inUsGallons(): Double = inUnitsOf(VolumeUnit.UsGallon)
-val Number.usFluidOunces: Volume get() = Volume(toDouble(), VolumeUnit.UsFluidOunce)
-val Number.usFlOz: Volume get() = usFluidOunces
-fun Volume.inUsFluidOunce(): Double = inUnitsOf(VolumeUnit.UsFluidOunce)
-val Number.usTablespoons: Volume get() = Volume(toDouble(), VolumeUnit.UsTablespoon)
-fun Volume.inUsTablespoons(): Double = inUnitsOf(VolumeUnit.UsTablespoon)
-val Number.usTeaspoons: Volume get() = Volume(toDouble(), VolumeUnit.UsTeaspoon)
-fun Volume.inUsTeaspoons(): Double = inUnitsOf(VolumeUnit.UsTeaspoon)
+public val Number.kiloliters: Volume get() = Volume(toDouble(), VolumeUnit.Kiloliter)
+public fun Volume.inKiloliters(): Double = inUnitsOf(VolumeUnit.Kiloliter)
+public val Number.liters: Volume get() = Volume(toDouble(), VolumeUnit.Liter)
+public fun Volume.inLiters(): Double = inUnitsOf(VolumeUnit.Liter)
+public val Number.milliliters: Volume get() = Volume(toDouble(), VolumeUnit.Milliliter)
+public fun Volume.inMilliliters(): Double = inUnitsOf(VolumeUnit.Milliliter)
+public val Number.usGallons: Volume get() = Volume(toDouble(), VolumeUnit.UsGallon)
+public fun Volume.inUsGallons(): Double = inUnitsOf(VolumeUnit.UsGallon)
+public val Number.usFluidOunces: Volume get() = Volume(toDouble(), VolumeUnit.UsFluidOunce)
+public val Number.usFlOz: Volume get() = usFluidOunces
+public fun Volume.inUsFluidOunce(): Double = inUnitsOf(VolumeUnit.UsFluidOunce)
+public val Number.usTablespoons: Volume get() = Volume(toDouble(), VolumeUnit.UsTablespoon)
+public fun Volume.inUsTablespoons(): Double = inUnitsOf(VolumeUnit.UsTablespoon)
+public val Number.usTeaspoons: Volume get() = Volume(toDouble(), VolumeUnit.UsTeaspoon)
+public fun Volume.inUsTeaspoons(): Double = inUnitsOf(VolumeUnit.UsTeaspoon)

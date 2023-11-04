@@ -18,6 +18,7 @@ internal fun KotlinMultiplatformExtension.configureCommon() {
 internal fun KotlinMultiplatformExtension.configureKotlin() {
     sourceSets.all {
         languageSettings {
+            explicitApi()
             languageVersion = "1.9"
             apiVersion = "1.9"
             progressiveMode = true
