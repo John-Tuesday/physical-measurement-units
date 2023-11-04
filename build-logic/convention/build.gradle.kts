@@ -4,7 +4,7 @@ plugins {
     `kotlin-dsl`
 }
 
-group = "org.calamarfederal.measurement.build-logic"
+group = "io.github.john.tuesday.measurement.build-logic"
 
 kotlin {
     compilerOptions {
