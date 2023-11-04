@@ -1,4 +1,4 @@
-package org.calamarfederal.physical.measurement
+package io.github.john.tuesday.measurement
 
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension

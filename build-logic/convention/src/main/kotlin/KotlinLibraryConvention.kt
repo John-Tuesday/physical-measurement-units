@@ -1,6 +1,6 @@
-import org.calamarfederal.physical.measurement.*
-import org.calamarfederal.physical.measurement.configureJvm
-import org.calamarfederal.physical.measurement.configureNative
+import io.github.john.tuesday.measurement.configureCommon
+import io.github.john.tuesday.measurement.configureJvm
+import io.github.john.tuesday.measurement.configureNative
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure

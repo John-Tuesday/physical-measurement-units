@@ -1,4 +1,4 @@
-package org.calamarfederal.physical.measurement
+package io.github.john.tuesday.measurement
 
 import org.gradle.api.Project
 import org.gradle.api.publish.PublishingExtension

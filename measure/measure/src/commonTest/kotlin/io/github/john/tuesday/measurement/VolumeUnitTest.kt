@@ -1,6 +1,6 @@
-package org.calamarfederal.physical.measurement
+package io.github.john.tuesday.measurement
 
-import org.calamarfederal.physical.measurement.test.assertEquals
+import io.github.john.tuesday.measurement.test.assertEquals
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

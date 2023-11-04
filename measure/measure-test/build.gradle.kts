@@ -1,5 +1,5 @@
-import org.calamarfederal.physical.measurement.MavenGroupId
-import org.calamarfederal.physical.measurement.MavenVersion
+import io.github.john.tuesday.measurement.MavenGroupId
+import io.github.john.tuesday.measurement.MavenVersion
 
 plugins {
     id("measure.kotlin.library")
