@@ -13,7 +13,7 @@ import java.util.*
 
 
 const val MavenGroupId = "io.github.john-tuesday"
-const val MavenVersion = "2.0.0"
+const val MavenVersion = "2.0.0-alpha01"
 internal const val GitUrl = "https://github.com/John-Tuesday/physical-measurement-units"
 
 internal fun Project.configureSecrets() {
@@ -55,7 +55,7 @@ internal fun PublishingExtension.configureRepositories(
 internal fun PublishingExtension.configureMaven(
     getJar: () -> Jar
 ) {
-    publications.withType<MavenPublication> {
+    publications.withType<MavenPublication>().configureEach {
         artifact(getJar())
 
         pom {
