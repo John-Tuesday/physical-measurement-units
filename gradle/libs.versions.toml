@@ -15,6 +15,7 @@ kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", ve
 kotlin-multiplatform-gradlePlugin = { module = "org.jetbrains.kotlin.multiplatform:org.jetbrains.kotlin.multiplatform.gradle.plugin", version.ref = "kotlin" }
 
 [plugins]
+dokka = { id = "org.jetbrains.dokka", version.ref = "kotlin" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 foojay-resolver = { id = "https://github.com/John-Tuesday/physical-measurement-units.git", version.ref = "foojay" }
 

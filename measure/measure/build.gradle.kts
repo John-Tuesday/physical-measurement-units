@@ -6,6 +6,7 @@ plugins {
     id("measure.kotlin.library.jvm")
     id("measure.kotlin.library.native")
     id("measure.maven.publication")
+    alias(libs.plugins.dokka)
 }
 
 group = MavenGroupId
