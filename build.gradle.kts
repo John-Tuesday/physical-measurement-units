@@ -1,3 +1,4 @@
+import io.github.john.tuesday.measurement.MavenGroupId
 import io.github.john.tuesday.measurement.MavenVersion
 
 plugins {
@@ -6,6 +7,7 @@ plugins {
     id("measure.kotlin.library") apply false
 }
 
+group = MavenGroupId
 version = MavenVersion
 
 tasks.dokkaHtmlMultiModule {
