@@ -35,6 +35,9 @@ public enum class VolumeUnit(internal val toLiterScale: Double) {
     ;
 }
 
+/**
+ * Calculate the value in terms on [volumeUnit]
+ */
 public fun Volume.inUnitsOf(volumeUnit: VolumeUnit): Double = liters / volumeUnit.toLiterScale
 
 /**
@@ -47,8 +50,22 @@ public fun Volume(amount: Number, volumeUnit: VolumeUnit): Volume =
  * Negate the underlying value
  */
 public operator fun Volume.unaryMinus(): Volume = Volume(liters = -liters)
+
+/**
+ * Returns the absolute value of this value
+ */
 public val Volume.absoluteValue: Volume get() = Volume(liters = liters.absoluteValue)
+
+/**
+ * Return a new [Volume] whose value is the sum of `this` and [other]
+ */
 public operator fun Volume.plus(other: Volume): Volume = Volume(liters = liters + other.liters)
+
+/**
+ * Return a new [Volume] whose value is the difference between `this` and [other]
+ *
+ *     this - other
+ */
 public operator fun Volume.minus(other: Volume): Volume = Volume(liters = liters - other.liters)
 
 /**

@@ -36,6 +36,9 @@ public enum class MassUnit(internal val toGramsScale: Double) {
     ;
 }
 
+/**
+ * Calculate the value in terms on [massUnit]
+ */
 public fun Mass.inUnitsOf(massUnit: MassUnit): Double = grams / massUnit.toGramsScale
 
 /**
@@ -50,8 +53,22 @@ public fun Mass(amount: Number, massUnit: MassUnit): Mass =
  * Negate the underlying value
  */
 public operator fun Mass.unaryMinus(): Mass = Mass(grams = -grams)
+
+/**
+ * Returns the absolute value of this value
+ */
 public val Mass.absoluteValue: Mass get() = Mass(grams = grams.absoluteValue)
+
+/**
+ * Returns a new [Mass] with the sum of `this` and [other]
+ */
 public operator fun Mass.plus(other: Mass): Mass = Mass(grams = grams + other.grams)
+
+/**
+ * Returns a new [Mass] with the difference between `this` and [other]
+ *
+ *     this - other
+ */
 public operator fun Mass.minus(other: Mass): Mass = Mass(grams = grams - other.grams)
 
 /**

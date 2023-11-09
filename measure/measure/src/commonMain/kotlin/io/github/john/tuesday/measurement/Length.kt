@@ -34,6 +34,9 @@ public enum class LengthUnit(internal val toMeterScale: Double) {
     ;
 }
 
+/**
+ * Calculate the value in terms of [lengthUnit]
+ */
 public fun Length.inUnitsOf(lengthUnit: LengthUnit): Double = meter / lengthUnit.toMeterScale
 
 /**
@@ -47,8 +50,21 @@ public fun Length(amount: Number, lengthUnit: LengthUnit): Length =
  */
 public operator fun Length.unaryMinus(): Length = Length(meter = -meter)
 
+/**
+ * Returns the absolute value of this value
+ */
 public val Length.absoluteValue: Length get() = Length(meter = meter.absoluteValue)
+
+/**
+ * Returns a new [Length] with the sum of `this` and [other]
+ */
 public operator fun Length.plus(other: Length): Length = Length(meter = meter + other.meter)
+
+/**
+ * Returns a new [Length] with the difference between `this` and [other]
+ *
+ *     this - other
+ */
 public operator fun Length.minus(other: Length): Length = Length(meter = meter - other.meter)
 
 /**

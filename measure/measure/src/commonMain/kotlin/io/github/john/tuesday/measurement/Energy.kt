@@ -33,6 +33,9 @@ public enum class EnergyUnit(internal val toJouleScale: Double) {
     ;
 }
 
+/**
+ * Calculate the value in terms of [energyUnit]
+ */
 public fun Energy.inUnitsOf(energyUnit: EnergyUnit): Double = joules / energyUnit.toJouleScale
 
 /**
@@ -46,9 +49,21 @@ public fun Energy(amount: Number, energyUnit: EnergyUnit): Energy =
  */
 public operator fun Energy.unaryMinus(): Energy = Energy(joules = -joules)
 
+/**
+ * Returns the absolute value of this value
+ */
 public val Energy.absoluteValue: Energy get() = Energy(joules = joules.absoluteValue)
 
+/**
+ * Return a new [Energy] whose value is the sum of the two [Energy]
+ */
 public operator fun Energy.plus(other: Energy): Energy = Energy(joules = joules + other.joules)
+
+/**
+ * Return a new [Energy] whose value is the difference between `this` and [other]
+ *
+ *     this - other
+ */
 public operator fun Energy.minus(other: Energy): Energy = Energy(joules = joules - other.joules)
 
 /**
