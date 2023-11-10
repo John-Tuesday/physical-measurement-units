@@ -5,10 +5,8 @@ import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPomDeveloperSpec
 import org.gradle.api.publish.maven.MavenPomLicenseSpec
 import org.gradle.api.publish.maven.MavenPublication
-import org.gradle.api.tasks.bundling.Jar
 import org.gradle.kotlin.dsl.assign
 import org.gradle.kotlin.dsl.extra
-import org.gradle.kotlin.dsl.withType
 import java.util.*
 
 
@@ -52,28 +50,23 @@ internal fun PublishingExtension.configureRepositories(
     }
 }
 
-internal fun PublishingExtension.configureMaven(
-    getJar: () -> Jar
-) {
-    publications.withType<MavenPublication>().configureEach {
-        artifact(getJar())
+internal fun MavenPublication.configureMaven() {
+    pom {
+        name = "Physical Measurement Units"
+        description = "Simple Kotlin Multiplatform library which supplies Mass, Volume, and Length"
+        url = GitUrl
 
-        pom {
-            name = "Physical Measurement Units"
-            description = "Simple Kotlin Multiplatform library which supplies Mass, Volume, and Length"
+        licenses {
+            mit()
+        }
+        developers {
+            johnTuesday()
+        }
+        scm {
             url = GitUrl
-
-            licenses {
-                mit()
-            }
-            developers {
-                johnTuesday()
-            }
-            scm {
-                url = GitUrl
-            }
         }
     }
+
 }
 
 internal fun MavenPomLicenseSpec.mit() {

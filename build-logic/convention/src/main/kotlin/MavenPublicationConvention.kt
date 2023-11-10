@@ -4,6 +4,7 @@ import io.github.john.tuesday.measurement.configureSecrets
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.publish.PublishingExtension
+import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.api.publish.maven.tasks.AbstractPublishToMaven
 import org.gradle.api.tasks.bundling.Jar
 import org.gradle.kotlin.dsl.*
@@ -24,16 +25,23 @@ class MavenPublicationConvention : Plugin<Project> {
                 archiveClassifier = "javadoc"
             }
 
-            extensions.configure<PublishingExtension> {
-                configureRepositories(
-                    extra["ossrhUsername"].toString(),
-                    extra["ossrhPassword"].toString(),
-                )
-                configureMaven { javadocJar.get() }
-                extensions.configure<SigningExtension> {
-                    useGpgCmd()
-                    sign(publications)
+            val publishing = extensions.getByType<PublishingExtension>()
+            afterEvaluate {
+                publishing.apply {
+                    configureRepositories(
+                        extra["ossrhUsername"].toString(),
+                        extra["ossrhPassword"].toString(),
+                    )
                 }
+            }
+
+            val mavenKotlin by publishing.publications.creating(MavenPublication::class) {
+                artifact(javadocJar)
+                configureMaven()
+            }
+            extensions.configure<SigningExtension> {
+                useGpgCmd()
+                sign(mavenKotlin)
             }
 
             val check by tasks.existing
