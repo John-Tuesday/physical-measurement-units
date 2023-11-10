@@ -11,6 +11,8 @@ plugins {
 group = MavenGroupId
 version = MavenVersion
 
-tasks.dokkaHtmlMultiModule {
-    outputDirectory = projectDir.resolve("docs/documentation")
+val dokkaTask = tasks.dokkaHtmlMultiModule
+
+dokkaTask {
+    outputDirectory = rootProject.layout.projectDirectory.dir("docs/documentation")
 }
