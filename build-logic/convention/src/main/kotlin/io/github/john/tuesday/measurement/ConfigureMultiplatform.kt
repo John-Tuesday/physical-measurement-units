@@ -1,37 +1,35 @@
 package io.github.john.tuesday.measurement
 
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.gradle.api.JavaVersion
+import org.gradle.jvm.toolchain.JavaLanguageVersion
+import org.gradle.kotlin.dsl.assign
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
+import org.jetbrains.kotlin.gradle.dsl.KotlinTargetContainerWithPresetFunctions
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 
-/**
- * Configure Kotlin Multiplatform common to all targets
- */
-@OptIn(ExperimentalKotlinGradlePluginApi::class)
-internal fun KotlinMultiplatformExtension.configureCommon() {
-    targetHierarchy.default()
-    configureKotlin()
-}
-
-/**
- * Configure Kotlin language settings for all targets
- */
-internal fun KotlinMultiplatformExtension.configureKotlin() {
-    sourceSets.all {
+internal fun KotlinProjectExtension.configureCommon(
+    kotlinVersion: KotlinVersion = KotlinVersion.KOTLIN_1_9,
+    javaVersion: JavaVersion = JavaVersion.VERSION_1_8,
+) {
+    sourceSets.configureEach {
         languageSettings {
             explicitApi()
-            languageVersion = "1.9"
-            apiVersion = "1.9"
+            languageVersion = kotlinVersion.version
+            apiVersion = kotlinVersion.version
             progressiveMode = true
         }
+    }
+    jvmToolchain {
+        languageVersion = JavaLanguageVersion.of(javaVersion.majorVersion)
     }
 }
 
 /**
  * Configure the JVM target
  */
-internal fun KotlinMultiplatformExtension.configureJvm() {
+internal fun KotlinTargetContainerWithPresetFunctions.configureJvm() {
     jvm {
-        jvmToolchain(8)
         withJava()
         testRuns.named("test") {
             executionTask.configure {
@@ -39,15 +37,4 @@ internal fun KotlinMultiplatformExtension.configureJvm() {
             }
         }
     }
-}
-
-/**
- * Configure the native target
- */
-internal fun KotlinMultiplatformExtension.configureNative() {
-    linuxArm64()
-    linuxX64()
-    macosX64()
-    macosArm64()
-    mingwX64()
 }

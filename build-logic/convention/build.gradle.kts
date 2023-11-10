@@ -30,13 +30,9 @@ gradlePlugin {
             id = "measure.kotlin.library"
             implementationClass = "KotlinLibraryConvention"
         }
-        register("kotlinLibraryJvm") {
-            id = "measure.kotlin.library.jvm"
-            implementationClass = "KotlinLibraryJvmConvention"
-        }
-        register("kotlinLibraryNative") {
-            id = "measure.kotlin.library.native"
-            implementationClass = "KotlinLibraryNativeConvention"
+        val kotlinLibraryMultiplatform by registering {
+            id = "measure.kotlin.library.multiplatform"
+            implementationClass = "KotlinLibraryMultiplatformConvention"
         }
 
         val mavenConvention by registering {

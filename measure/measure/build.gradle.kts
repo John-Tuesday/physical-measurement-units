@@ -2,9 +2,7 @@ import io.github.john.tuesday.measurement.MavenGroupId
 import io.github.john.tuesday.measurement.MavenVersion
 
 plugins {
-    id("measure.kotlin.library")
-    id("measure.kotlin.library.jvm")
-    id("measure.kotlin.library.native")
+    id("measure.kotlin.library.multiplatform")
     id("measure.maven.publish")
     alias(libs.plugins.dokka)
 }
