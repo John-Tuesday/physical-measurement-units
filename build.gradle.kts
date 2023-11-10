@@ -16,3 +16,7 @@ val dokkaTask = tasks.dokkaHtmlMultiModule
 dokkaTask {
     outputDirectory = rootProject.layout.projectDirectory.dir("docs/documentation")
 }
+
+tasks.withType<PublishToMavenRepository>().configureEach {
+    dependsOn(dokkaTask)
+}
