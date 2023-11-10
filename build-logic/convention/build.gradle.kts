@@ -16,6 +16,7 @@ kotlin {
     sourceSets {
         val main by getting {
             dependencies {
+                compileOnly(libs.maven.assist.gradlePlugin)
                 compileOnly(libs.kotlin.gradlePlugin)
                 compileOnly(libs.kotlin.multiplatform.gradlePlugin)
             }
@@ -38,9 +39,9 @@ gradlePlugin {
             implementationClass = "KotlinLibraryNativeConvention"
         }
 
-        register("mavenPublication") {
-            id = "measure.maven.publication"
-            implementationClass = "MavenPublicationConvention"
+        val mavenConvention by registering {
+            id = "measure.maven.publish"
+            implementationClass = "MavenConvention"
         }
     }
 }

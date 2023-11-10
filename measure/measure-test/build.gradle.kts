@@ -5,12 +5,19 @@ plugins {
     id("measure.kotlin.library")
     id("measure.kotlin.library.jvm")
     id("measure.kotlin.library.native")
-    id("measure.maven.publication")
+    id("measure.maven.publish")
     alias(libs.plugins.dokka)
 }
 
 group = MavenGroupId
 version = MavenVersion
+
+publishing {
+    publications.withType<MavenPublication>().configureEach {
+        pom.name = "Physical Measurement Units Test Fixtures"
+        pom.description = "Simple Kotlin Multiplatform library which supplies test helpers for Mass, Volume, and Length"
+    }
+}
 
 kotlin {
     sourceSets {

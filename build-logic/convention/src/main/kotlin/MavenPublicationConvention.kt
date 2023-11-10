@@ -1,53 +1,45 @@
-import io.github.john.tuesday.measurement.configureMaven
-import io.github.john.tuesday.measurement.configureRepositories
-import io.github.john.tuesday.measurement.configureSecrets
+import io.github.john.tuesday.measurement.GitUrl
+import io.github.john.tuesday.measurement.johnTuesday
+import io.github.john.tuesday.plugins.MavenPublishAssistPlugin
+import io.github.john.tuesday.plugins.publishing.model.LicensePreset
+import io.github.john.tuesday.plugins.publishing.model.MavenRepository
+import io.github.john.tuesday.plugins.publishing.model.license
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.credentials.PasswordCredentials
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPublication
-import org.gradle.api.publish.maven.tasks.AbstractPublishToMaven
-import org.gradle.api.tasks.bundling.Jar
 import org.gradle.kotlin.dsl.*
-import org.gradle.plugins.signing.SigningExtension
-import org.gradle.plugins.signing.SigningPlugin
 
-class MavenPublicationConvention : Plugin<Project> {
+class MavenConvention : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
-            pluginManager.apply {
-                apply("maven-publish")
-                apply<SigningPlugin>()
-            }
-
-            configureSecrets()
-
-            val javadocJar by tasks.registering(Jar::class) {
-                archiveClassifier = "javadoc"
-            }
-
-            val publishing = extensions.getByType<PublishingExtension>()
-            afterEvaluate {
-                publishing.apply {
-                    configureRepositories(
-                        extra["ossrhUsername"].toString(),
-                        extra["ossrhPassword"].toString(),
-                    )
+            pluginManager.apply(MavenPublishAssistPlugin::class)
+            pluginManager.withPlugin("maven-publish") {
+                val publishing = extensions.getByType<PublishingExtension>()
+                publishing.repositories {
+                    maven {
+                        setUrl(MavenRepository.SonatypeStaging.url)
+                        credentials(PasswordCredentials::class)
+                    }
                 }
-            }
+                publishing.publications.withType<MavenPublication>().configureEach {
+                    pom {
+                        name = "Physical Measurement Units"
+                        description = "Simple Kotlin Multiplatform library which supplies Mass, Volume, and Length"
+                        url = GitUrl
 
-            val mavenKotlin by publishing.publications.creating(MavenPublication::class) {
-                artifact(javadocJar)
-                configureMaven()
-            }
-            extensions.configure<SigningExtension> {
-                useGpgCmd()
-                sign(mavenKotlin)
-            }
-
-            val check by tasks.existing
-
-            tasks.withType<AbstractPublishToMaven>().configureEach {
-                dependsOn(check)
+                        scm {
+                            url = GitUrl
+                        }
+                        licenses {
+                            license(LicensePreset.MIT)
+                        }
+                        developers {
+                            johnTuesday()
+                        }
+                    }
+                }
             }
         }
     }
