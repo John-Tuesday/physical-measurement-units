@@ -5,7 +5,6 @@ junitPlatform = "1.10.0"
 junit4 = "4.13.2"
 kotlin = "1.9.20"
 mavenAssist = "0.1.0-SNAPSHOT"
-foojay = "0.7.0"
 
 [libraries]
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }
@@ -21,7 +20,6 @@ maven-assist-gradlePlugin = { module = "io.github.john-tuesday.maven-publish-ass
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 maven-assist = { id = "io.github.john-tuesday.maven-publish-assist", version.ref = "mavenAssist" }
-foojay-resolver = { id = "https://github.com/John-Tuesday/physical-measurement-units.git", version.ref = "foojay" }
 
 [bundles]
 
