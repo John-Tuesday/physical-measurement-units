@@ -4,7 +4,7 @@ import io.github.john.tuesday.measurement.MavenVersion
 plugins {
     id("measure.kotlin.library.multiplatform")
     id("measure.maven.publish")
-    alias(libs.plugins.dokka)
+    alias(libs.plugins.dokka.convention.html) apply true
 }
 
 group = MavenGroupId
