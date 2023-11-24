@@ -8,16 +8,29 @@ import kotlin.math.absoluteValue
 public class Volume internal constructor(
     internal val liters: Double,
 ): Comparable<Volume> {
+    /**
+     * Compare using natural order
+     */
     override fun compareTo(other: Volume): Int = liters.compareTo(other.inUnitsOf(VolumeUnit.Liter))
 
+    /**
+     * Returns string representation of the object
+     */
     override fun toString(): String = "${this::class.simpleName!!}(liters = $liters)"
 
     /**
      * Compares equality based on the underlying volume value
      */
     override fun equals(other: Any?): Boolean = other is Volume && other.liters == liters
+
+    /**
+     * Returns hash code of this object
+     */
     override fun hashCode(): Int = liters.hashCode()
 
+    /**
+     * Public companion object for extensibility
+     */
     public companion object
 }
 

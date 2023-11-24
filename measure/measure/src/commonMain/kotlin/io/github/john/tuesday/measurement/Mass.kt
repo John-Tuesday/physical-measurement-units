@@ -10,16 +10,29 @@ import kotlin.math.absoluteValue
 public class Mass internal constructor(
     internal val grams: Double,
 ) : Comparable<Mass> {
+    /**
+     * Compare using natural order
+     */
     override fun compareTo(other: Mass): Int = grams.compareTo(other.grams)
 
+    /**
+     * Returns string representation of the object
+     */
     override fun toString(): String = "${this::class.simpleName!!}(grams = $grams)"
 
     /**
      * Compare equality based on underlying mass value
      */
     override fun equals(other: Any?): Boolean = other is Mass && other.grams == grams
+
+    /**
+     * Returns hash code of this object
+     */
     override fun hashCode(): Int = grams.hashCode()
 
+    /**
+     * Public companion object for extensibility
+     */
     public companion object
 }
 

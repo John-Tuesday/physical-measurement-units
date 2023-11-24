@@ -8,16 +8,29 @@ import kotlin.math.absoluteValue
 public class Energy internal constructor(
     internal val joules: Double
 ) : Comparable<Energy> {
+    /**
+     * Compare using natural order
+     */
     override fun compareTo(other: Energy): Int = joules.compareTo(other.joules)
 
+    /**
+     * Returns string representation of the object
+     */
     override fun toString(): String = "Energy(joules = $joules)"
 
     /**
      * Compares equality based on the underlying length value
      */
     override fun equals(other: Any?): Boolean = other is Energy && (compareTo(other) == 0)
+
+    /**
+     * Returns hash code of this object
+     */
     override fun hashCode(): Int = joules.hashCode()
 
+    /**
+     * Public companion object for extensibility
+     */
     public companion object
 }
 

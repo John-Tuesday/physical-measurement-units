@@ -8,15 +8,28 @@ import kotlin.math.absoluteValue
 public class Length internal constructor(
     internal val meter: Double,
 ): Comparable<Length> {
+    /**
+     * Compare using natural order
+     */
     override fun compareTo(other: Length): Int = meter.compareTo(other.meter)
 
+    /**
+     * Returns string representation of the object
+     */
     override fun toString(): String = "${this::class.simpleName!!}(meter = $meter)"
     /**
      * Compares equality based on the underlying length value
      */
     override fun equals(other: Any?): Boolean = other is Length && other.meter == meter
+
+    /**
+     * Returns hash code of this object
+     */
     override fun hashCode(): Int = meter.hashCode()
 
+    /**
+     * Public companion object for extensibility
+     */
     public companion object
 }
 
