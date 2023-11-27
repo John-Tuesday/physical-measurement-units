@@ -40,11 +40,34 @@ public class Mass internal constructor(
  * Supported units of measure of [Mass]
  */
 public enum class MassUnit(internal val toGramsScale: Double) {
+    /**
+     * Unit of measure for [Mass]
+     */
     Microgram(0.000_001),
+
+    /**
+     * Unit of measure for [Mass]
+     */
     Milligram(0.001),
+
+    /**
+     * Unit of measure for [Mass]
+     */
     Gram(1.0),
+
+    /**
+     * Unit of measure for [Mass]
+     */
     Kilogram(1_000.0),
+
+    /**
+     * Unit of measure for [Mass]
+     */
     Ounce(28.349_523_125),
+
+    /**
+     * Unit of measure for [Mass]
+     */
     Pound(453.592_37),
     ;
 }
@@ -99,17 +122,72 @@ public operator fun Mass.times(number: Number): Mass = Mass(grams * number.toDou
  */
 public operator fun Mass.div(number: Number): Mass = Mass(grams / number.toDouble())
 
+/**
+ * Returns a [Mass] equal to `this` number of micrograms
+ */
 public val Number.micrograms: Mass get() = Mass(toDouble(), MassUnit.Microgram)
+
+/**
+ * Values of `this` [Mass] as a [Double] in units of micrograms
+ */
 public fun Mass.inMicrograms(): Double = inUnitsOf(MassUnit.Microgram)
+
+/**
+ * Returns a [Mass] equal to `this` number of milligrams
+ */
 public val Number.milligrams: Mass get() = Mass(toDouble(), MassUnit.Milligram)
+
+/**
+ * Values of `this` [Mass] as a [Double] in units of milligrams
+ */
 public fun Mass.inMilligrams(): Double = inUnitsOf(MassUnit.Milligram)
+
+/**
+ * Returns a [Mass] equal to `this` number of grams
+ */
 public val Number.grams: Mass get() = Mass(toDouble(), MassUnit.Gram)
+
+/**
+ * Values of `this` [Mass] as a [Double] in units of grams
+ */
 public fun Mass.inGrams(): Double = inUnitsOf(MassUnit.Gram)
+
+/**
+ * Returns a [Mass] equal to `this` number of kilograms
+ */
 public val Number.kilograms: Mass get() = Mass(toDouble(), MassUnit.Kilogram)
+
+/**
+ * Values of `this` [Mass] as a [Double] in units of kilograms
+ */
 public fun Mass.inKilograms(): Double = inUnitsOf(MassUnit.Kilogram)
+
+/**
+ * Returns a [Mass] equal to `this` number of ounces
+ */
 public val Number.ounces: Mass get() = Mass(toDouble(), MassUnit.Ounce)
+
+/**
+ * Returns a [Mass] equal to `this` number of ounces
+ */
 public val Number.oz: Mass get() = ounces
+
+/**
+ * Values of `this` [Mass] as a [Double] in units of ounces
+ */
 public fun Mass.inOunces(): Double = inUnitsOf(MassUnit.Ounce)
+
+/**
+ * Returns a [Mass] equal to `this` number of pounds
+ */
 public val Number.pounds: Mass get() = Mass(toDouble(), MassUnit.Pound)
+
+/**
+ * Returns a [Mass] equal to `this` number of pounds
+ */
 public val Number.lbs: Mass get() = pounds
+
+/**
+ * Values of `this` [Mass] as a [Double] in units of pounds
+ */
 public fun Mass.inPounds(): Double = inUnitsOf(MassUnit.Pound)

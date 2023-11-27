@@ -6,7 +6,7 @@ import kotlin.math.absoluteValue
  * Measure of Energy
  */
 public class Energy internal constructor(
-    internal val joules: Double
+    internal val joules: Double,
 ) : Comparable<Energy> {
     /**
      * Compare using natural order
@@ -38,10 +38,29 @@ public class Energy internal constructor(
  * Unit of measurement for [Energy]
  */
 public enum class EnergyUnit(internal val toJouleScale: Double) {
+    /**
+     * Unit of measurement for [Energy]
+     */
     Joule(1.0),
+
+    /**
+     * Unit of measurement for [Energy]
+     */
     Kilojoule(1_000.0),
+
+    /**
+     * Unit of measurement for [Energy]
+     */
     Megajoule(1_000_000.0),
+
+    /**
+     * Unit of measurement for [Energy]
+     */
     Calorie(4.184),
+
+    /**
+     * Unit of measurement for [Energy]
+     */
     Kilocalorie(4184.0),
     ;
 }
@@ -88,20 +107,68 @@ public operator fun Energy.div(other: Energy): Double = joules / other.joules
  * Scale `this` by [number]
  */
 public operator fun Energy.times(number: Number): Energy = Energy(joules = joules * number.toDouble())
+
 /**
  * Shrink `this` by [number]
  */
 public operator fun Energy.div(number: Number): Energy = Energy(joules = joules / number.toDouble())
 
+/**
+ * Returns an [Energy] equal to `this` number of joules
+ */
 public val Number.joules: Energy get() = Energy(toDouble(), EnergyUnit.Joule)
+
+/**
+ * Value of `this` [Energy] as a [Double] in units of joule
+ */
 public fun Energy.inJoules(): Double = inUnitsOf(EnergyUnit.Joule)
+
+/**
+ * Returns an [Energy] equal to `this` number of kilojoules
+ */
 public val Number.kilojoules: Energy get() = Energy(toDouble(), EnergyUnit.Kilojoule)
+
+/**
+ * Value of `this` [Energy] as a [Double] in units of kilojoule
+ */
 public fun Energy.inKilojoules(): Double = inUnitsOf(EnergyUnit.Kilojoule)
+
+/**
+ * Returns an [Energy] equal to `this` number of megajoules
+ */
 public val Number.megajoules: Energy get() = Energy(toDouble(), EnergyUnit.Megajoule)
+
+/**
+ * Value of `this` [Energy] as a [Double] in units of megajoule
+ */
 public fun Energy.inMegajoules(): Double = inUnitsOf(EnergyUnit.Megajoule)
+
+/**
+ * Returns an [Energy] equal to `this` number of calories
+ */
 public val Number.calories: Energy get() = Energy(toDouble(), EnergyUnit.Calorie)
+
+/**
+ * Returns an [Energy] equal to `this` number of calories
+ */
 public val Number.cal: Energy get() = this.calories
+
+/**
+ * Value of `this` [Energy] as a [Double] in units of calories
+ */
 public fun Energy.inCalories(): Double = inUnitsOf(EnergyUnit.Calorie)
+
+/**
+ * Returns an [Energy] equal to `this` number of kilocalories
+ */
 public val Number.kilocalories: Energy get() = Energy(toDouble(), EnergyUnit.Kilocalorie)
+
+/**
+ * Returns an [Energy] equal to `this` number of kilocalories
+ */
 public val Number.kcal: Energy get() = this.kilocalories
+
+/**
+ * Value of `this` [Energy] as a [Double] in units of kilocalories
+ */
 public fun Energy.inKilocalories(): Double = inUnitsOf(EnergyUnit.Kilocalorie)
