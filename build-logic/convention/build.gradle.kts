@@ -26,7 +26,7 @@ kotlin {
 
 gradlePlugin {
     plugins {
-        register("kotlinLibrary") {
+        val kotlinLibrary by registering {
             id = "measure.kotlin.library"
             implementationClass = "KotlinLibraryConvention"
         }
