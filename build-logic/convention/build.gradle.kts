@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 
 plugins {
@@ -7,10 +8,14 @@ plugins {
 group = "io.github.john.tuesday.measurement.build-logic"
 
 kotlin {
+    jvmToolchain {
+        languageVersion = JavaLanguageVersion.of(JavaVersion.VERSION_1_8.majorVersion)
+    }
     compilerOptions {
         apiVersion = KotlinVersion.KOTLIN_1_9
         languageVersion = KotlinVersion.KOTLIN_1_9
         progressiveMode = true
+        jvmTarget = JvmTarget.JVM_1_8
     }
 
     sourceSets {
