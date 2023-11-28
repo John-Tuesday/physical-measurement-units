@@ -9,6 +9,7 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPublication
+import org.gradle.api.publish.maven.tasks.AbstractPublishToMaven
 import org.gradle.kotlin.dsl.*
 
 class MavenConvention : Plugin<Project> {
@@ -44,6 +45,17 @@ class MavenConvention : Plugin<Project> {
                     developers {
                         johnTuesday()
                     }
+                }
+            }
+            tasks.withType<AbstractPublishToMaven>().configureEach {
+                onlyIf {
+                    name
+                        .substringAfter("publish")
+                        .substringBefore("Publication") in listOf("Jvm", "KotlinMultiplatform") &&
+                            providers
+                                .gradleProperty("isMainHost")
+                                .orElse(providers.environmentVariable("IS_MAIN_HOST"))
+                                .orNull == "true"
                 }
             }
         }
