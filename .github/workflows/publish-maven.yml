@@ -49,14 +49,10 @@ jobs:
           java-version: '8'
           cache: 'gradle'
 
-      - name: Is main host
-        shell: bash
-        run: echo "$IS_MAIN_HOST"
-
       - name: Publish to repos
         shell: bash
         if: ${{ inputs.github-packages || inputs.sonatype }}
         env:
           TASK: ${{ (inputs.github-packages && inputs.sonatype) && 'publish' || (inputs.github-packages && 'publishAllPublicationsToGitHubPackagesRepository' || 'publishAllPublicationsToSonatypeStagingRepository') }}
-        run:  echo ./gradlew "$TASK"
+        run: ./gradlew "$TASK"
 
