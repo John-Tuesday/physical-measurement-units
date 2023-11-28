@@ -56,5 +56,5 @@ jobs:
         if: ${{ inputs.github-packages || inputs.sonatype }}
         env:
           TASK: ${{ (inputs.github-packages && inputs.sonatype) && 'publish' || (inputs.github-packages && 'publishAllPublicationsToGitHubPackagesRepository' || 'publishAllPublicationsToSonatypeStagingRepository') }}
-        run: ./gradlew "$TASK"
+        run:  echo ./gradlew "$TASK"
 

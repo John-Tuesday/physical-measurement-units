@@ -2,8 +2,9 @@ name: Release version
 
 on:
   push:
-    tags:
-      - v[0-9]*
+    branches: [ "d-actions" ]
+        #    tags:
+#      - v[0-9]*
 
 jobs:
   release:
@@ -16,7 +17,7 @@ jobs:
       - name: Create release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh release create "$GITHUB_REF_NAME" --notes-from-tag
+        run: echo gh release create "$GITHUB_REF_NAME" --notes-from-tag
 
   publish:
     permissions:
