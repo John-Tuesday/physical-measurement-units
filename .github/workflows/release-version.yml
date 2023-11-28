@@ -27,6 +27,6 @@ jobs:
 
     uses: ./.github/workflows/publish-maven.yml
     with:
-      sonatype: false
+      sonatype: true
       github-packages: false
     secrets: inherit
