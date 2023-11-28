@@ -35,6 +35,8 @@ class KotlinLibraryMultiplatformConvention : Plugin<Project> {
                 linuxX64()
                 linuxArm64()
                 mingwX64()
+                macosArm64()
+                macosX64()
             }
         }
     }
