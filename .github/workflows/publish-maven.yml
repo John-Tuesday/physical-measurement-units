@@ -49,6 +49,9 @@ jobs:
           java-version: '8'
           cache: 'gradle'
 
+      - name: Is main host
+        run: echo "$IS_MAIN_HOST"
+
       - name: Publish to repos
         if: ${{ inputs.github-packages || inputs.sonatype }}
         env:
