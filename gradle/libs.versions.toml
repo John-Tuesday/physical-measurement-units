@@ -1,6 +1,6 @@
 [versions]
 dokka = "1.9.10"
-dokkaConvention = "0.0.0-SNAPSHOT"
+dokkaConvention = "0.1.0-alpha01"
 junit = "5.10.0"
 junitPlatform = "1.10.0"
 junit4 = "4.13.2"
