@@ -47,15 +47,20 @@ class MavenConvention : Plugin<Project> {
                     }
                 }
             }
+
+            val isMainHost = providers
+                .gradleProperty("isMainHost")
+                .orElse(providers.environmentVariable("IS_MAIN_HOST"))
+                .map { it == "true" }
+                .orElse(false)
+
             tasks.withType<AbstractPublishToMaven>().configureEach {
                 onlyIf {
-                    name
-                        .substringAfter("publish")
-                        .substringBefore("Publication") in listOf("Jvm", "KotlinMultiplatform") &&
-                            providers
-                                .gradleProperty("isMainHost")
-                                .orElse(providers.environmentVariable("IS_MAIN_HOST"))
-                                .orNull == "true"
+                    val duplicateTargets = listOf("jvm", "kotlinmultiplatform")
+
+                    isMainHost.get() || name.substringAfter("publish")
+                        .substringBefore("Publication")
+                        .lowercase() !in duplicateTargets
                 }
             }
         }
