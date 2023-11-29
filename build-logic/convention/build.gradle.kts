@@ -1,11 +1,21 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
+import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 
 plugins {
     `kotlin-dsl`
 }
 
 group = "io.github.john.tuesday.measurement.build-logic"
+
+tasks.withType<KotlinJvmCompile>().configureEach {
+    compilerOptions {
+        apiVersion = KotlinVersion.KOTLIN_1_9
+        languageVersion = KotlinVersion.KOTLIN_1_9
+        progressiveMode = true
+        jvmTarget = JvmTarget.JVM_1_8
+    }
+}
 
 kotlin {
     jvmToolchain {
