@@ -25,4 +25,6 @@ jobs:
       contents: read
 
     uses: ./.github/workflows/publish-maven.yml
+    with:
+      github-packages: false
     secrets: inherit
