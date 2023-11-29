@@ -60,3 +60,7 @@ jobs:
           TASK: ${{ (inputs.github-packages && inputs.sonatype) && 'publish' || (inputs.github-packages && 'publishAllPublicationsToGitHubPackagesRepository' || 'publishAllPublicationsToSonatypeStagingRepository') }}
         run: ./gradlew "$TASK" --continue
 
+      - name: Push documentation
+        shell: bash
+        run: |
+          git commit -a -m "Generated documentation"; git push
