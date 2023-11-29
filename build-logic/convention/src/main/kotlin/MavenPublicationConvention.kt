@@ -56,7 +56,7 @@ class MavenConvention : Plugin<Project> {
 
             tasks.withType<AbstractPublishToMaven>().configureEach {
                 onlyIf {
-                    val duplicateTargets = listOf("jvm", "kotlinmultiplatform")
+                    val duplicateTargets = listOf("jvm", "kotlinmultiplatform", "linuxx64", "linuxarm64", "mingwx64")
 
                     isMainHost.get() || name.substringAfter("publish")
                         .substringBefore("Publication")
