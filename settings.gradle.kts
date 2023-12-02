@@ -8,12 +8,14 @@ pluginManagement {
             credentials {
                 username = providers
                     .gradleProperty("gpr.user")
-                    .orElse(providers.environmentVariable("USERNAME"))
-                    .orNull ?: error("Expected to find property 'gpr.user' or environment variable 'USERNAME' but found nothing")
+                    .orElse(providers.systemProperty("gpr.user"))
+                    .orElse(providers.environmentVariable("GPR_USERNAME"))
+                    .orNull ?: error("Expected to find property 'gpr.user' or environment variable 'GPR_USERNAME'")
                 password = providers
                     .gradleProperty("gpr.key")
-                    .orElse(providers.environmentVariable("TOKEN"))
-                    .orNull ?: error("Expected to find property 'gpr.key' or environment variable 'TOKEN' but found nothing")
+                    .orElse(providers.systemProperty("gpr.key"))
+                    .orElse(providers.environmentVariable("GPR_TOKEN"))
+                    .orNull ?: error("Expected to find property 'gpr.key' or environment variable 'GPR_TOKEN'")
             }
         }
     }
