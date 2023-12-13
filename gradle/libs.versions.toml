@@ -1,6 +1,6 @@
 [versions]
 dokka = "1.9.10"
-convention = "0.1.0-alpha04-SNAPSHOT"
+convention = "0.1.0-alpha05"
 junit = "5.10.0"
 junitPlatform = "1.10.0"
 junit4 = "4.13.2"
@@ -19,6 +19,7 @@ maven-assist-gradlePlugin = { module = "io.github.john-tuesday.maven-publish-ass
 [plugins]
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 dokka-convention-html = { id = "io.github.john-tuesday.dokka-html", version.ref = "convention" }
+dokka-convention-versioning = { id = "io.github.john-tuesday.dokka-versioning", version.ref = "convention" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 maven-assist = { id = "io.github.john-tuesday.maven-publish-assist", version.ref = "convention" }
 
