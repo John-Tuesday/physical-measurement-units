@@ -4,7 +4,7 @@ pluginManagement {
         mavenCentral()
         maven {
             name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/john-tuesday/gradle-convention-plugins")
+            url = uri("https://maven.pkg.github.com/tuesday-org/gradle-plugins")
             credentials {
                 username = providers
                     .gradleProperty("gpr.user")
