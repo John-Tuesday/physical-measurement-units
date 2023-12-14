@@ -1,0 +1,7 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+
+module:measure
+io.github.john.tuesday.measurement
+module:measure-test
+io.github.john.tuesday.measurement.test
