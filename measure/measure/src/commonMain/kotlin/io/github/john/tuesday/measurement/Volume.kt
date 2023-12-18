@@ -1,11 +1,13 @@
 package io.github.john.tuesday.measurement
 
+import kotlin.jvm.JvmInline
 import kotlin.math.absoluteValue
 
 /**
  * Measure of Volume
  */
-public class Volume internal constructor(
+@JvmInline
+public value class Volume internal constructor(
     internal val liters: Double,
 ): Comparable<Volume> {
     /**
@@ -17,16 +19,6 @@ public class Volume internal constructor(
      * Returns string representation of the object
      */
     override fun toString(): String = "${this::class.simpleName!!}(liters = $liters)"
-
-    /**
-     * Compares equality based on the underlying volume value
-     */
-    override fun equals(other: Any?): Boolean = other is Volume && other.liters == liters
-
-    /**
-     * Returns hash code of this object
-     */
-    override fun hashCode(): Int = liters.hashCode()
 
     /**
      * Public companion object for extensibility

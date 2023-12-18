@@ -1,5 +1,6 @@
 package io.github.john.tuesday.measurement
 
+import kotlin.jvm.JvmInline
 import kotlin.math.absoluteValue
 
 /**
@@ -7,7 +8,8 @@ import kotlin.math.absoluteValue
  *
  * (sometimes confused Weight)
  */
-public class Mass internal constructor(
+@JvmInline
+public value class Mass internal constructor(
     internal val grams: Double,
 ) : Comparable<Mass> {
     /**
@@ -19,16 +21,6 @@ public class Mass internal constructor(
      * Returns string representation of the object
      */
     override fun toString(): String = "${this::class.simpleName!!}(grams = $grams)"
-
-    /**
-     * Compare equality based on underlying mass value
-     */
-    override fun equals(other: Any?): Boolean = other is Mass && other.grams == grams
-
-    /**
-     * Returns hash code of this object
-     */
-    override fun hashCode(): Int = grams.hashCode()
 
     /**
      * Public companion object for extensibility

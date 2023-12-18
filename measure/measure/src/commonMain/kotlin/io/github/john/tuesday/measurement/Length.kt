@@ -1,11 +1,13 @@
 package io.github.john.tuesday.measurement
 
+import kotlin.jvm.JvmInline
 import kotlin.math.absoluteValue
 
 /**
  * Measure of Length
  */
-public class Length internal constructor(
+@JvmInline
+public value class Length internal constructor(
     internal val meter: Double,
 ): Comparable<Length> {
     /**
@@ -17,15 +19,6 @@ public class Length internal constructor(
      * Returns string representation of the object
      */
     override fun toString(): String = "${this::class.simpleName!!}(meter = $meter)"
-    /**
-     * Compares equality based on the underlying length value
-     */
-    override fun equals(other: Any?): Boolean = other is Length && other.meter == meter
-
-    /**
-     * Returns hash code of this object
-     */
-    override fun hashCode(): Int = meter.hashCode()
 
     /**
      * Public companion object for extensibility

@@ -1,11 +1,13 @@
 package io.github.john.tuesday.measurement
 
+import kotlin.jvm.JvmInline
 import kotlin.math.absoluteValue
 
 /**
  * Measure of Energy
  */
-public class Energy internal constructor(
+@JvmInline
+public value class Energy internal constructor(
     internal val joules: Double,
 ) : Comparable<Energy> {
     /**
@@ -17,16 +19,6 @@ public class Energy internal constructor(
      * Returns string representation of the object
      */
     override fun toString(): String = "Energy(joules = $joules)"
-
-    /**
-     * Compares equality based on the underlying length value
-     */
-    override fun equals(other: Any?): Boolean = other is Energy && (compareTo(other) == 0)
-
-    /**
-     * Returns hash code of this object
-     */
-    override fun hashCode(): Int = joules.hashCode()
 
     /**
      * Public companion object for extensibility
